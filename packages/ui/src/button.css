@@ -1,0 +1,54 @@
+.button {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.button-primary {
+  background-color: #111111;
+  color: #fff;
+}
+
+.button-primary:hover {
+  background-color: rgba(17, 17, 17, 0.8);
+}
+
+.button-sm {
+  width: 154px;
+  height: 48px;
+}
+
+.button-md {
+  width: 335px;
+  height: 48px;
+}
+
+.button-lg {
+  width: 335px;
+  height: 60px;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-disabled:hover {
+  opacity: 0.5;
+}
