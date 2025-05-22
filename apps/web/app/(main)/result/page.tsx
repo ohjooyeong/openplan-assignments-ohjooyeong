@@ -6,12 +6,15 @@ import { useRouter } from "next/navigation";
 import InfoCard from "./components/info-card";
 import Image from "next/image";
 import { usePhotoStore } from "../../../store/photo-store";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ResultPage = () => {
   const router = useRouter();
   const { photoInfo } = usePhotoStore();
+  const queryClient = useQueryClient();
 
   const handlePrevious = () => {
+    queryClient.removeQueries();
     router.push("/");
   };
 
@@ -26,7 +29,7 @@ const ResultPage = () => {
           layout="fill"
           objectFit="cover"
           quality={100}
-          style={{ opacity: 0.3 }} // 이미지 투명도 설정
+          style={{ opacity: 0.3 }}
         />
       </div>
       <div className={styles.linearLayer}></div>
