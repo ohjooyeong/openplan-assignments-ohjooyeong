@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+}
+
+.applicantName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.whiteText {
+  color: #ffffff;
+}

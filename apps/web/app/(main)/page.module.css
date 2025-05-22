@@ -1,0 +1,26 @@
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.greeting {
+  text-align: center;
+  font-size: 28px;
+  line-height: 39px;
+  font-weight: 600;
+}
+
+.greetingText {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 140%;
+  white-space: pre-line;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
