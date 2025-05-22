@@ -9,6 +9,7 @@ export interface ButtonProps {
   variant?: "primary";
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
+  loading?: boolean;
   onClick?: () => void;
   style?: CSSProperties;
 }
@@ -19,17 +20,18 @@ export const Button = ({
   variant = "primary",
   size = "md",
   disabled = false,
+  loading = false,
   onClick,
   style,
 }: ButtonProps) => {
   return (
     <button
-      className={`button button-${variant} button-${size} ${className} ${disabled ? "button-disabled" : ""}`}
+      className={`button button-${variant} button-${size} ${className} ${disabled ? "button-disabled" : ""} ${loading ? "button-loading" : ""}`}
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || loading}
       style={style}
     >
-      {children}
+      {loading ? <span className="loading-spinner"></span> : children}
     </button>
   );
 };

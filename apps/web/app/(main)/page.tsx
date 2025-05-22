@@ -5,12 +5,14 @@ import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
 import { usePhotoQuery } from "../../hooks/use-photo-query";
 import { usePhotoStore } from "../../store/photo-store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { debounce } from "lodash-es";
 
 const HomePage = () => {
   const router = useRouter();
   const setPhotoInfo = usePhotoStore((state) => state.setPhotoInfo);
   const { data, refetch, isLoading } = usePhotoQuery();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -19,9 +21,10 @@ const HomePage = () => {
     }
   }, [data, setPhotoInfo, router]);
 
-  const handleFetchPhoto = () => {
-    refetch();
-  };
+  const handleFetchPhoto = debounce(() => {
+    setLoading(true);
+    refetch().finally(() => setLoading(false));
+  }, 300);
 
   return (
     <div className={styles.layout}>
@@ -34,9 +37,10 @@ const HomePage = () => {
       <footer className={styles.footer}>
         <Button
           onClick={handleFetchPhoto}
-          disabled={isLoading}
+          disabled={isLoading || loading}
           size="md"
           style={{ width: "100%" }}
+          loading={loading}
         >
           다음
         </Button>
