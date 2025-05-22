@@ -32,7 +32,12 @@ const HomePage = () => {
       </main>
 
       <footer className={styles.footer}>
-        <Button onClick={handleFetchPhoto} disabled={isLoading} size="md">
+        <Button
+          onClick={handleFetchPhoto}
+          disabled={isLoading}
+          size="md"
+          style={{ width: "100%" }}
+        >
           다음
         </Button>
       </footer>

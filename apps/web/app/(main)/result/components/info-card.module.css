@@ -1,0 +1,22 @@
+.infoCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111111;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(17, 17, 17, 0.5);
+  word-break: break-all;
+}
+
+.value a {
+  color: rgba(17, 17, 17, 0.5);
+  text-decoration: underline;
+}
