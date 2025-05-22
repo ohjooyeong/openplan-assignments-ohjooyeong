@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { PhotoInfo } from "../app/api/photo-api";
 
 interface PhotoStore {
@@ -7,8 +8,16 @@ interface PhotoStore {
   resetPhotoInfo: () => void;
 }
 
-export const usePhotoStore = create<PhotoStore>((set) => ({
-  photoInfo: null,
-  setPhotoInfo: (info) => set({ photoInfo: info }),
-  resetPhotoInfo: () => set({ photoInfo: null }),
-}));
+export const usePhotoStore = create<PhotoStore>()(
+  persist(
+    (set) => ({
+      photoInfo: null,
+      setPhotoInfo: (info) => set({ photoInfo: info }),
+      resetPhotoInfo: () => set({ photoInfo: null }),
+    }),
+    {
+      name: "photo-store",
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
