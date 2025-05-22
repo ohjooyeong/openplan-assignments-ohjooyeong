@@ -1,13 +1,17 @@
 .header {
+  position: absolute;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 52px;
+  background: transparent;
+  z-index: 100;
 }
 
 .applicantName {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: #1a1a1a;
 }
 

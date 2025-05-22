@@ -1,3 +1,11 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 52px 20px 20px 20px;
+  justify-content: space-between;
+}
+
 .main {
   flex: 1;
   display: flex;

@@ -15,7 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     if (data) {
       setPhotoInfo(data);
-      router.push("/#");
+      router.push("/result");
     }
   }, [data, setPhotoInfo, router]);
 
@@ -24,7 +24,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div className={styles.layout}>
       <main className={styles.main}>
         <div className={styles.greeting}>
           <h2 className={styles.greetingText}>{`안녕하세요\n오주영입니다.`}</h2>
@@ -36,7 +36,7 @@ const HomePage = () => {
           다음
         </Button>
       </footer>
-    </>
+    </div>
   );
 };
 
