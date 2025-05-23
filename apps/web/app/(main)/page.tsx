@@ -7,12 +7,14 @@ import { usePhotoQuery } from "../../hooks/use-photo-query";
 import { usePhotoStore } from "../../store/photo-store";
 import { useEffect, useState } from "react";
 import { debounce } from "lodash-es";
+import { useMediaQuery } from "../../hooks/use-media-query";
 
 const HomePage = () => {
   const router = useRouter();
   const setPhotoInfo = usePhotoStore((state) => state.setPhotoInfo);
   const { data, refetch, isLoading } = usePhotoQuery();
   const [loading, setLoading] = useState(false);
+  const mediaType = useMediaQuery();
 
   useEffect(() => {
     if (data) {
@@ -26,6 +28,17 @@ const HomePage = () => {
     refetch().finally(() => setLoading(false));
   }, 300);
 
+  const getButtonProps = () => {
+    switch (mediaType) {
+      case "desktop":
+        return { size: "lg" as const };
+      case "tablet":
+        return { size: "md" as const };
+      default:
+        return { size: "md" as const, style: { width: "100%" } };
+    }
+  };
+
   return (
     <div className={styles.layout}>
       <main className={styles.main}>
@@ -38,9 +51,8 @@ const HomePage = () => {
         <Button
           onClick={handleFetchPhoto}
           disabled={isLoading || loading}
-          size="md"
-          style={{ width: "100%" }}
           loading={loading}
+          {...getButtonProps()}
         >
           다음
         </Button>

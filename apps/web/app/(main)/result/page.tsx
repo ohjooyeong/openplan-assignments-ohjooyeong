@@ -7,15 +7,28 @@ import InfoCard from "./components/info-card";
 import Image from "next/image";
 import { usePhotoStore } from "../../../store/photo-store";
 import { useQueryClient } from "@tanstack/react-query";
+import { useMediaQuery } from "../../../hooks/use-media-query";
 
 const ResultPage = () => {
   const router = useRouter();
   const { photoInfo } = usePhotoStore();
   const queryClient = useQueryClient();
+  const mediaType = useMediaQuery();
 
   const handlePrevious = () => {
     queryClient.removeQueries();
     router.push("/");
+  };
+
+  const getButtonProps = () => {
+    switch (mediaType) {
+      case "desktop":
+        return { size: "sm" as const };
+      case "tablet":
+        return { size: "sm" as const };
+      default:
+        return { size: "md" as const, style: { width: "100%" } };
+    }
   };
 
   return (
@@ -71,13 +84,13 @@ const ResultPage = () => {
                 isLink
               />
             </div>
+            <footer className={styles.footer}>
+              <Button onClick={handlePrevious} {...getButtonProps()}>
+                이전
+              </Button>
+            </footer>
           </div>
         </div>
-        <footer className={styles.footer}>
-          <Button onClick={handlePrevious} size="md" style={{ width: "100%" }}>
-            이전
-          </Button>
-        </footer>
       </div>
     </div>
   );
