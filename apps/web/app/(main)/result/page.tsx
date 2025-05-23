@@ -8,15 +8,41 @@ import Image from "next/image";
 import { usePhotoStore } from "../../../store/photo-store";
 import { useQueryClient } from "@tanstack/react-query";
 import { useMediaQuery } from "../../../hooks/use-media-query";
+import { useEffect, useState } from "react";
 
 const ResultPage = () => {
   const router = useRouter();
-  const { photoInfo } = usePhotoStore();
+  const { photoInfo, resetPhotoInfo } = usePhotoStore();
   const queryClient = useQueryClient();
   const mediaType = useMediaQuery();
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 사진 조회 이력 없이 /result로 이동 시 1초 후 메인 페이지로 이동
+  useEffect(() => {
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    // 사진 정보가 없으면 메인 페이지로 리다이렉트
+    if (!photoInfo) {
+      const redirectTimer = setTimeout(() => {
+        router.push("/");
+      }, 1000);
+
+      return () => {
+        clearTimeout(redirectTimer);
+        clearTimeout(loadingTimer);
+      };
+    }
+
+    return () => {
+      clearTimeout(loadingTimer);
+    };
+  }, [photoInfo, router]);
 
   const handlePrevious = () => {
     queryClient.removeQueries();
+    resetPhotoInfo(); // 이전 버튼 클릭시 photoInfo 초기화
     router.push("/");
   };
 
@@ -63,25 +89,41 @@ const ResultPage = () => {
           </div>
           <div className={styles.cardWrapper}>
             <div className={styles.infoCards}>
-              <InfoCard label="id" value={photoInfo?.id || "N/A"} />
-              <InfoCard label="author" value={photoInfo?.author || "N/A"} />
+              <InfoCard
+                label="id"
+                value={photoInfo?.id || "N/A"}
+                isLoading={isLoading}
+              />
+              <InfoCard
+                label="author"
+                value={photoInfo?.author || "N/A"}
+                isLoading={isLoading}
+              />
             </div>
             <div className={styles.infoCards}>
               <InfoCard
                 label="width"
-                value={photoInfo?.width.toLocaleString("ko") || "N/A"}
+                value={photoInfo?.width?.toLocaleString("ko") || "N/A"}
+                isLoading={isLoading}
               />
               <InfoCard
                 label="height"
-                value={photoInfo?.height.toLocaleString("ko") || "N/A"}
+                value={photoInfo?.height?.toLocaleString("ko") || "N/A"}
+                isLoading={isLoading}
               />
             </div>
             <div className={styles.infoCardsLink}>
-              <InfoCard label="url" value={photoInfo?.url || "N/A"} isLink />
+              <InfoCard
+                label="url"
+                value={photoInfo?.url || "N/A"}
+                isLink
+                isLoading={isLoading}
+              />
               <InfoCard
                 label="download_url"
                 value={photoInfo?.download_url || "N/A"}
                 isLink
+                isLoading={isLoading}
               />
             </div>
             <footer className={styles.footer}>
