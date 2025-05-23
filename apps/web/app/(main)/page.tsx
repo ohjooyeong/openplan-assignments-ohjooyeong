@@ -11,10 +11,17 @@ import { useMediaQuery } from "../../hooks/use-media-query";
 
 const HomePage = () => {
   const router = useRouter();
-  const setPhotoInfo = usePhotoStore((state) => state.setPhotoInfo);
+  const { photoInfo, setPhotoInfo } = usePhotoStore((state) => state);
   const { data, refetch, isLoading } = usePhotoQuery();
   const [loading, setLoading] = useState(false);
   const mediaType = useMediaQuery();
+
+  // 사진 조회 이력이 있을 시 자동으로 /result 페이지로 이동
+  useEffect(() => {
+    if (photoInfo) {
+      router.push("/result");
+    }
+  }, [photoInfo, router]);
 
   useEffect(() => {
     if (data) {
