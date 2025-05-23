@@ -1,84 +1,73 @@
-# Turborepo starter
+# 사진 조회 앱
 
-This Turborepo starter is maintained by the Turborepo core team.
+### 지원자: 오주영
 
-## Using this example
+## 🛠 기술 스택
 
-Run the following command:
+- 프레임워크 : Next.js 15
+- 언어 : TypeScript
+- 클라이언트 상태 관리 : Zustand
+- 서버 상태 관리 : TanStack Query (React Query)
+- 스타일링 : CSS Modules
+- 빌드 도구 : Turborepo
+- 패키지 관리 : pnpm
+- UI 문서화 : Storybook
 
-```sh
-npx create-turbo@latest
-```
+## 🚀 구현 내용
 
-## What's inside?
+### 1. 모노레포 구조 설계
 
-This Turborepo includes the following packages/apps:
+### 2. 메인 페이지
 
-### Apps and Packages
+### 3. 결과 페이지
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### 4. 404 페이지
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### 5. UI 컴포넌트 라이브러리
 
-### Utilities
+## 개발 과정에서의 어려움
 
-This Turborepo has some additional tools already setup for you:
+### 1. Turborepo 구성의 복잡성
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Turborepo를 처음 구성하는 과정에서 여러 어려움이 있었습니다. 특히 패키지 간 의존성 관리와 빌드 파이프라인 설정에 많은 시간이 소요되었습니다. 워크스페이스 설정, 공유 설정 파일 구성, 그리고 각 패키지의 빌드 스크립트를 올바르게 연결하는 과정이 복잡했습니다.
 
-### Build
+## 실행 방법
 
-To build all apps and packages, run the following command:
+### 개발 환경 설정
 
-```
-cd my-turborepo
-pnpm build
-```
+## 각각 패키지 설치 및 실행행
 
-### Develop
+```bash
+cd packages/ui
 
-To develop all apps and packages, run the following command:
+pnpm install
 
-```
-cd my-turborepo
+cd packages/eslint-config
+
+pnpm install
+
+cd apps/web
+
+pnpm install
+
 pnpm dev
 ```
 
-### Remote Caching
+```bash
+git clone https://github.com/your-username/openplan-assignments-ohjooyeong.git
+cd openplan-assignments-ohjooyeong
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+pnpm install
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+pnpm dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Storybook 실행
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```bash
+cd apps/storybook
 
+pnpm install
+
+pnpm dev
 ```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
