@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useMediaQueryStore } from "../store/media-query-store";
 
-type MediaQueryType = "mobile" | "tablet" | "desktop";
+export type MediaQueryType = "mobile" | "tablet" | "desktop";
 
 export const useMediaQuery = (): MediaQueryType => {
-  const [mediaType, setMediaType] = useState<MediaQueryType>("mobile");
+  const { mediaType, setMediaType } = useMediaQueryStore();
 
   useEffect(() => {
     const checkMediaType = () => {
