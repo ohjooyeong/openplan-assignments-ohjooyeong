@@ -20,6 +20,9 @@ const meta: Meta<typeof Button> = {
     disabled: {
       control: { type: "boolean" },
     },
+    loading: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -59,5 +62,12 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     children: "비활성화 버튼",
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+    children: "로딩 버튼",
   },
 };
