@@ -1,11 +1,4 @@
-export interface PhotoInfo {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
-  url: string;
-  download_url: string;
-}
+import { PhotoInfo } from "../../types/types";
 
 export const fetchPhotoInfo = async (): Promise<PhotoInfo> => {
   const response = await fetch("https://picsum.photos/id/0/info");

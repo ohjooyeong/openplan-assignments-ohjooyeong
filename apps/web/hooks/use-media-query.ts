@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useMediaQueryStore } from "../store/media-query-store";
-
-export type MediaQueryType = "mobile" | "tablet" | "desktop";
+import { MediaQueryType } from "../types/types";
 
 export const useMediaQuery = (): MediaQueryType => {
   const { mediaType, setMediaType } = useMediaQueryStore();

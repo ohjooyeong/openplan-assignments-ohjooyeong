@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { MediaQueryType } from "../hooks/use-media-query";
+import { MediaQueryType } from "../types/types";
 
 interface MediaQueryStore {
   mediaType: MediaQueryType;
