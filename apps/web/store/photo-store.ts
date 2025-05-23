@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { PhotoInfo } from "../app/api/photo-api";
+import { PhotoInfo } from "../types/types";
 
 interface PhotoStore {
   photoInfo: PhotoInfo | null;
